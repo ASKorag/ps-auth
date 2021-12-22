@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="37" height="33" viewBox="0 0 37 33">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 3px;
+        fill-rule: evenodd;
+        opacity: 0.7;
+        filter: url(#filter);
+      }
+    </style>
+    <filter id="filter" x="913" y="203" width="34" height="30" filterUnits="userSpaceOnUse">
+      <feFlood result="flood" flood-color="#ccc"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="translate(-911.5 -201.5)" style="fill: none; filter: url(#filter)">
+    <path id="heart_B" class="cls-1" d="M947,212.352A9.268,9.268,0,0,0,937.818,203,9.13,9.13,0,0,0,930,207.468,9.132,9.132,0,0,0,922.181,203,9.267,9.267,0,0,0,913,212.352a9.388,9.388,0,0,0,3.152,7.041l13.01,13.253a1.169,1.169,0,0,0,1.676,0l13.01-13.253A9.392,9.392,0,0,0,947,212.352Z" style="stroke: inherit; filter: none; fill: inherit"/>
+  </g>
+  <use transform="translate(-911.5 -201.5)" xlink:href="#heart_B" style="stroke: #fff; filter: none; fill: none"/>
+</svg>
