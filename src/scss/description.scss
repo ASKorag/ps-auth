@@ -1,0 +1,32 @@
+@use '~@scss/variables/colors' as c;
+@use '~@scss/variables/sizes' as s;
+
+p {
+  margin: 5px 0;
+  text-indent: 10px;
+
+  font-size: s.$fzDescription_product;
+  color: c.$fColorDescription_product;
+
+  &:nth-of-type(odd) {
+    color: c.$fColorWhite;
+  }
+}
+
+ul, ol {
+  padding: 0 0 0 25px;
+  box-sizing: border-box;
+  list-style-type: circle;
+  max-width: 90%;
+  margin: 10px auto;
+
+  li {
+    padding: 5px 0;
+  }
+}
+
+a {
+  display: inline-block;
+  padding: 15px 0 0 0;
+  font-style: italic;
+}

@@ -1,0 +1,60 @@
+@use '~@scss/variables/colors' as c;
+@use '~@scss/variables/sizes' as s;
+
+.item-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+
+.item-sale {
+  background: no-repeat radial-gradient(closest-side, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 0.5) 60%, rgba(255, 0, 0, 0.1) 95%);
+  padding: 8px;
+  border-radius: 50%;
+  margin-left: -10px;
+}
+
+.item-price-amount {
+  color: c.$gold;
+  font-size: s.$fzItem_price;
+
+  @media screen and (max-device-width: s.$min-width) {
+    font-size: s.$fzSale_Adapt;
+  }
+  @media screen and (max-device-width: s.$max-device-width) {
+    font-size: s.$fzSale_Adapt;
+  }
+}
+
+.item-price-amount.price-sale {
+  color: gray;
+  font-size: s.$fzSale;
+
+  @media screen and (max-device-width: s.$min-width) {
+    display: none;
+  }
+}
+
+.item-arrow {
+  color: c.$fColorWhite;
+  font-size: s.$fzSale;
+
+  @media screen and (max-device-width: s.$min-width) {
+    display: none;
+  }
+}
+
+.item-price-reduced {
+  font-size: s.$fzItem_price;
+  color: #d5b57a;
+
+
+  @media screen and (max-device-width: s.$max-device-width) {
+    font-size: s.$fzSale_Adapt;
+  }
+}
+
