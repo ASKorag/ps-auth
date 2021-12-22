@@ -1,0 +1,16 @@
+@use '~@scss/variables/colors' as c;
+@use '~@scss/variables/sizes' as s;
+
+//ShoppingList.createHeaderList()    Wishlist.createHeaderList()
+.list-header-container {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  width: 50vw;
+  height: 35px;
+  padding-top: 5px;
+  z-index: 30;
+
+  background: radial-gradient(ellipse at top, c.$bgColor_main, transparent);
+  border-radius: 0 0 50% 50% /0 0 100% 100%;
+}
