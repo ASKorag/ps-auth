@@ -33,6 +33,7 @@ const geoLocInstance = axios.create({
 const ipLocInstance = axios.create({
   baseURL: ipLocBaseURL,
 });
+//some fix )
 
 
 backEndInstance.interceptors.request.use((config) => {
