@@ -9,11 +9,11 @@ import ProductAPI from '@api/ProductAPI';
 import LocalStorage from '@classes/LocalStorage';
 import ItemDOM from '@dom/ItemDOM';
 
+
 /**
  * Function for create Observer options
  * @param margin отступ от нижней границы для срабатывани загрузки
  */
-
 const createObserverOptions = (margin: number) => {
   return {
     root: null,
@@ -23,18 +23,16 @@ const createObserverOptions = (margin: number) => {
 };
 
 /**
- * Function for lazy loading of products on the main page
+ * Function for lazy loading of products from BD on the main page
  * @param amount number of products to download
  * @param margin target padding (allows you to start loading new products earlier)
  * @param user current store user
- * @param item an instance of the Item class to create a product card
  */
 
 function lazyBD(
   amount: number,
   margin: number,
   user: IUser | null,
-  item: Item,
 ) {
   const $productsContainer = document.querySelector('.main-container-content');
   if (!$productsContainer) return;
@@ -83,7 +81,6 @@ function lazyBD(
   const observer = new IntersectionObserver(observerCb, observerOptions);
   // add tracking from the product
   observer.observe($lastProduct);
-
 }
 
 export default lazyBD;

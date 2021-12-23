@@ -59,6 +59,8 @@ label:after {
 // total
 
 .total-container {
+  grid-column: span 2;
+
 
   display: flex;
   gap: 20px;
@@ -66,15 +68,13 @@ label:after {
   justify-content: space-between;
   align-items: center;
 
-  width: 100%;
-  position: absolute;
-  bottom: 0.5em;
-  left: 50%;
-  transform: translateX(-50%);
 
   @media screen and (max-device-width: s.$max-device-width) {
     flex-wrap: wrap;
     bottom: -3em;
+  }
+  @media screen and (max-device-width: s.$max-width-resp) {
+    grid-column: span 1;
   }
 }
 

@@ -1,15 +1,21 @@
 @import '~@scss/header';
 @import '~@scss/main-nav';
 @import '~@scss/main-content';
-@import '~@scss/animations.scss';
-@import "~@scss/popup.scss";
-@import "~@scss/head-for-lists.scss";
+@import '~@scss/item.scss';
+@import '~@scss/filters.scss';
+@import '~@scss/items-filtered-list.scss';
 @import "~@scss/description.scss";
-@import "~@scss/iconmoon.scss";
-@import "~@scss/price.scss";
+@import "~@scss/head-for-lists.scss";
 @import "~@scss/btn-added.scss";
+@import "~@scss/price.scss";
+
+@import "~@scss/popup.scss";
+@import '~@scss/animations.scss';
 @import "~@scss/buy.scss";
-@import "~@scss/style-for-add.scss";
+@import "~@scss/iconmoon.scss";
+@import "~@scss/tree.scss";
+
+@import '~@scss/item-content.scss';
 
 @font-face {
   font-family: 'icomoon';
@@ -87,6 +93,6 @@ input {
   padding: 0 30px;
   box-sizing: border-box;
   @media screen and (max-device-width: 425px) {
-    padding: 0 15px;
+    padding: 0 10px;
   }
 }

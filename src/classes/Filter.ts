@@ -60,7 +60,7 @@ class Filter {
     let $target: HTMLElement | null;
     LocalStorage.getUserData().then((userData) => {
      // if (userData) {
-      console.log(`filterProducts userData:${userData} `)
+      //console.log(`filterProducts userData:${userData} `)
         const actualFilter = filter;
         $target = document.querySelector(`[data-filter=${filter}]`);
         $target?.classList.add('active-link');
@@ -135,71 +135,96 @@ class Filter {
     if (filter === 'Technique') {
       const $itemFilter = VehiclesFilterDOM.createVehiclesFilter();
       $wrapper?.append($itemFilter);
-      const filterList = $itemFilter.querySelectorAll(
+      const buttonsFilterList = $itemFilter.querySelectorAll(
         '.filter-container-checkedBtn',
       );
-      const filterType = $itemFilter.querySelectorAll('.filter-btn');
-      const allVehicles = $itemFilter.querySelector('.item-filters-btn');
-      const allFilterButtons = $itemFilter.querySelectorAll(
-        '.filter-container-checkedBtn',
-      );
-      allVehicles?.addEventListener('click', () => {
-        allFilterButtons.forEach((item, index) => {
-          if (index === 0) {
-            item.textContent = 'All nations';
-          }
-          if (index === 1) {
-            item.textContent = 'All types';
-          }
-          if (index === 2) {
-            item.textContent = 'All tiers';
-          }
-          item.classList.remove(item.classList[3]);
-        });
-        this.#type = 'all';
-        this.#tier = 'all';
-        this.#nation = 'all';
-        this.filterTechniqueProducts(userData /* , productData, router */);
-      });
-      filterType.forEach((item) => {
-        item.addEventListener('click', (e: any) => {
-          const $elem = e.currentTarget.parentElement.parentElement
-            ?.firstElementChild as HTMLElement;
-          if (e.currentTarget.classList[0] === 'nations-btn') {
-            this.#nation = e.currentTarget.dataset.nation;
-          } else if (e.currentTarget.classList[0] === 'type-btn') {
-            this.#type = e.currentTarget.dataset.type;
-          }
-          if (e.currentTarget.classList[0] !== 'tires-btn') {
-            if ($elem.classList.length > 3) {
-              $elem.classList.remove($elem.classList[3]);
-              $elem.classList.add(e.currentTarget.firstElementChild.className);
-              $elem.textContent = `${e.currentTarget.firstElementChild.textContent}`;
-            } else {
-              $elem.classList.add(e.currentTarget.firstElementChild.className);
-              $elem.textContent = `${e.currentTarget.firstElementChild.textContent}`;
-            }
-          }
-          if (e.currentTarget.classList[0] === 'tires-btn') {
-            $elem.textContent = `${e.currentTarget.firstElementChild.textContent}`;
-            this.#tier = e.currentTarget.dataset.tier;
-          }
-          e.currentTarget.parentElement.parentElement.lastElementChild.classList.toggle(
-            'opened-list',
-          );
-          this.filterTechniqueProducts(userData);
-        });
-      });
-      filterList.forEach((item) => {
-        item.addEventListener('click', (e: any) => {
-          e.currentTarget.nextElementSibling.classList.toggle('opened-list');
-        });
-      });
+      const allFilterTypes = $itemFilter.querySelectorAll('.filter-btn');
+      const resetTypeButton = $itemFilter.querySelector('.item-filters-btn');
+      if (resetTypeButton) {
+        Filter.addFilterEvent(
+          resetTypeButton,
+          allFilterTypes,
+          buttonsFilterList,
+          userData,
+        );
+      }
     }
     if ($visualContainer) {
       $wrapper?.append($visualContainer);
     }
     Filter.showFilterProduct(filteredProducts, userData);
+  }
+
+  static addFilterEvent(
+    resetTypeButton: Element,
+    allFilterTypes: NodeListOf<Element>,
+    buttonsFilterList: NodeListOf<Element>,
+    userData: IUser | null,
+  ) {
+    resetTypeButton?.addEventListener('click', () => {
+      buttonsFilterList.forEach((item, index) => {
+        if (index === 0) {
+          item.textContent = 'All nations';
+        }
+        if (index === 1) {
+          item.textContent = 'All types';
+        }
+        if (index === 2) {
+          item.textContent = 'All tiers';
+        }
+        item.classList.remove(item.classList[3]);
+      });
+      this.#type = 'all';
+      this.#tier = 'all';
+      this.#nation = 'all';
+      this.filterTechniqueProducts(userData);
+    });
+
+    allFilterTypes.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        const $eventElement = e.currentTarget as HTMLElement;
+        const $filterTypeButton = $eventElement.parentElement?.parentElement
+          ?.firstElementChild as HTMLElement;
+        const filterButtonContent =
+          $eventElement.firstElementChild?.textContent;
+        const filterType = $eventElement.classList[0];
+        if (filterType === 'nations-btn') {
+          this.#nation = $eventElement.dataset.nation;
+        } else if (filterType === 'type-btn') {
+          this.#type = $eventElement.dataset.type;
+        }
+        if (filterType !== 'tires-btn') {
+          if ($filterTypeButton.classList.length > 3) {
+            $filterTypeButton.classList.remove($filterTypeButton.classList[3]);
+            $filterTypeButton.classList.add(
+              $eventElement.firstElementChild?.className!,
+            );
+            $filterTypeButton.textContent = filterButtonContent!;
+          } else {
+            $filterTypeButton.classList.add(
+              $eventElement.firstElementChild?.className!,
+            );
+            $filterTypeButton.textContent = filterButtonContent!;
+          }
+        }
+        if ($eventElement.classList[0] === 'tires-btn') {
+          $filterTypeButton.textContent = filterButtonContent!;
+          this.#tier = $eventElement.dataset.tier;
+        }
+        $eventElement.parentElement?.parentElement?.lastElementChild?.classList.toggle(
+          'opened-list',
+        );
+        this.filterTechniqueProducts(userData);
+      });
+    });
+
+    buttonsFilterList.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        (e.currentTarget as HTMLElement).nextElementSibling?.classList.toggle(
+          'opened-list',
+        );
+      });
+    });
   }
 
   /**
@@ -233,7 +258,7 @@ class Filter {
       });
     }
 
-    lazy(20, 100, userData, filteredProducts, new Item());
+    lazy(20, 100, userData, filteredProducts);
   }
 
   /**
@@ -281,7 +306,7 @@ class Filter {
             value.products.forEach((product: IProduct) => {
               $container.appendChild(ItemDOM.createItem(product, userData));
             });
-            lazyBD(40, 500, userData, new Item());
+            lazyBD(40, 500, userData);
           }
         },
       );

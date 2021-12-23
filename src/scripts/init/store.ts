@@ -1,3 +1,7 @@
+/**
+ * @module Init
+ */
+
 import LocalStorage from '@classes/LocalStorage';
 import ShoppingList from '@classes/ShoppingList';
 import Wishlist from '@classes/Wishlist';

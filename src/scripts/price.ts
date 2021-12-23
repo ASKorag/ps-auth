@@ -1,15 +1,55 @@
-import localStorage from '@classes/LocalStorage';
+/**
+ * @module Price
+ */
 
+import localStorage from '@classes/LocalStorage';
+// import { TCurrencyCode, TCurrencySign } from '@type/price';
+
+/**
+ * Функция для получения цены в удобном человеку представлении
+ * @param price цена продукта в виде строки
+ */
 function humanPrice(price: string): string {
   const numPrice = +price;
   return numPrice.toLocaleString('ru-RU');
 }
 
+/**
+ * Функция для перевода цены из удобной человеку формы в обычную
+ * @param str строка с ценой в удобном для человека виде
+ */
 function parseToNumber(str: string): number {
   const practicalStr = str.replace(',', '.').replace(/\s/g, '');
   return Number.parseFloat(practicalStr);
 }
 
+/**
+ * Функция для получения знака или кода валюты
+ * @param currencyCode код валюты
+ */
+function getCurrencySign(currencyCode: string): string {
+  switch (currencyCode) {
+    case 'BYN':
+      return 'BYN';
+    case 'RUB':
+      return '₽';
+    case 'UAH':
+      return '₴';
+    case 'PLN':
+      return 'zł';
+    case 'CNY':
+      return '¥';
+    case 'EUR':
+      return '€';
+    default:
+      return '$';
+  }
+}
+
+/**
+ * Функция для расчёта финальной цены выбранных продуктов в корзине
+ * @param $container HTML элемент, содержащий продукты для расчёта
+ */
 function calcFinalPrice($container: HTMLElement) {
   const $totalPrice = $container.querySelector('.total-price > span');
   const $items = $container.querySelectorAll('.item-filtered-container');
@@ -38,8 +78,8 @@ function calcFinalPrice($container: HTMLElement) {
   if ($totalPrice) {
     $totalPrice.textContent = `${humanPrice(
       String(summaryPrice),
-    )} ${localStorage.getCurrency()}`;
+    )} ${getCurrencySign(localStorage.getCurrency())}`;
   }
 }
 
-export { humanPrice, parseToNumber, calcFinalPrice };
+export { humanPrice, parseToNumber, calcFinalPrice, getCurrencySign };

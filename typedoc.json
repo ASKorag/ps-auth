@@ -4,5 +4,6 @@
   "emit": "docs",
   "entryPointStrategy": "Expand",
   "entryPoints": "src",
-  "mergeModulesMergeMode": "module"
+  "mergeModulesMergeMode": "module",
+  "internalNamespace": "INTERNAL"
 }

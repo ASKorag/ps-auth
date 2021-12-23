@@ -86,112 +86,104 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 45px;
+  gap: 35px;
 
   @media screen and (max-device-width: s.$min-width) {
-    gap: 35px;
-  }
-  @media screen and (max-device-width: s.$max-device-width) {
-    gap: 25px;
-  }
-
-  .header-nav-link {
-    padding: 10px 0;
-    box-sizing: border-box;
-
-    font-size: s.$fzHeader_nav;
-    font-weight: 400;
-    font-style: normal;
-    letter-spacing: 0.025em;
-    text-transform: capitalize;
-    color: c.$fColorHeader;
-
-    transition: color 0.4s;
-
-    &:hover {
-      color: c.$fColorHeader_active;
-    }
-
-    span {
-      color: c.$fColorWhite;
-
-      @media screen and (max-device-width: s.$min-width) {
-        width: 40px;
-        display: inline-block;
-
-        position: relative;
-
-        font-size: 15px;
-      }
-    }
-
-    @media screen and (max-device-width: s.$min-width) {
-      font-size: 0;
-
-      span.wishlist-span-container {
-        &:after {
-          content: url("~@images/buttons/valentines-heart.png");
-          width: 16px;
-          height: 14px;
-
-          position: absolute;
-          top: 50%;
-          left: 35%;
-          transform: translate(50%, -50%);
-        }
-      }
-      span.cart-span-container {
-        text-align: right;
-
-        &:before {
-          content: url("~@images/buttons/cart.png");
-          width: 16px;
-          height: 14px;
-
-          position: absolute;
-          top: 50%;
-          left: -45%;
-          transform: translate(100%, -50%);
-        }
-      }
-    }
-    @media screen and (max-device-width: s.$max-device-width) {
-      width: 15%;
-    }
-  }
-
-  .nav-link-active {
-    color: c.$fColorHeader_active;
-    border-bottom: 3px solid c.$fColorHeader_active;
-  }
-
-  .header-nav-account {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     gap: 10px;
+  }
+}
 
+.header-nav-link {
+  padding: 10px 0;
+  box-sizing: border-box;
+
+  font-size: s.$fzHeader_nav;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.025em;
+  text-transform: capitalize;
+  color: c.$fColorHeader;
+
+  transition: color 0.4s;
+
+  &:hover {
+    color: c.$fColorHeader_active;
+  }
+
+  &:before {
+    font-size: 0;
+  }
+
+
+  span {
+    color: c.$fColorWhite;
 
     @media screen and (max-device-width: s.$min-width) {
-      position: relative;
+      font-size: 0.8rem;
     }
+  }
 
-    .login {
-      background: url("~@images/buttons/ico.png") no-repeat center/contain;
-      width: 16px;
-      height: 14px;
-
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+  @media screen and (max-device-width: s.$min-width) {
+    color: c.$fColorHeader_active;
+    font-size: 0;
+    &:before {
+      font-size: 1rem;
+      margin: 5px 3px 0 0;
     }
+    &:focus, &:active {
+      color: c.$fColor_orange;
+    }
+  }
+}
 
-    span {
-      @media screen and (max-device-width: s.$min-width) {
-        font-size: 0;
+.nav-link-active {
+  color: c.$fColorHeader_active;
+  border-bottom: 3px solid c.$fColorHeader_active;
+}
+
+.header-nav-account {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+
+
+  @media screen and (max-device-width: s.$min-width) {
+    position: relative;
+    box-sizing: border-box;
+    padding-top: 4px;
+
+    .header-nav-link:last-of-type {
+     // display: none;
+    }
+    .icon-enter, .icon-user {
+      &:focus {
+        font-size: 1em;
+        display: block;
+        color: c.$fColor_orange;
       }
+    }
+    .header-nav-link.create {
+      font-size: 1em;
+      color: c.$fColorHeader_active;
+    //  display: block;
+      display: none;
+
+      &:focus, &:active {
+        color: c.$fColor_orange;
+      }
+
+      @media screen and (max-device-width: s.$max-device-width) {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  span {
+    @media screen and (max-device-width: s.$min-width) {
+      display: none;
     }
   }
 }

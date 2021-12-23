@@ -56,13 +56,17 @@ class Popup {
   createForm(linkHandler?: TLinkHandler): HTMLFormElement {
     const $form = document.createElement('form'); // создать форму
     $form.classList.add('popup-form'); // только стили
+    if(this.#inputs.length){
+      for (let i = 0; i < this.#inputs.length; i += 1) {
+        // пробегает по каждому input [0] - текст для лейбла и плейсхолдера,[1] - тип инпута
+        $form.innerHTML += `<label>${this.#inputs[i][0]} <input type='${
+          this.#inputs[i][1]
+        }' placeholder='Enter your ${this.#inputs[i][0]}' autocomplete="on"></label>`;
+      }
 
-    for (let i = 0; i < this.#inputs.length; i += 1) {
-      // пробегает по каждому input [0] - текст для лейбла и плейсхолдера,[1] - тип инпута
-      $form.innerHTML += `<label>${this.#inputs[i][0]} <input type='${
-        this.#inputs[i][1]
-      }' placeholder='Enter your ${this.#inputs[i][0]}' autocomplete="on"></label>`;
     }
+
+
     // после генерации инпутов заталкиваем кнопу в форму
     $form.appendChild(Popup.createButton(this.#onSubmit));
 

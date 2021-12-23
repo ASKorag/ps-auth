@@ -20,8 +20,19 @@ jobs:
       - name: Build Store
         run: npm run build
 
+      - name: Build Docs
+        run: npm run docs
+
       - name: Deploy Store
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages
           folder: dist
+          target-folder: frontend
+
+      - name: Deploy Docs
+        uses: JamesIves/github-pages-deploy-action@4.1.7
+        with:
+          branch: gh-pages
+          folder: docs
+          target-folder: docs

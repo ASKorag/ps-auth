@@ -23,7 +23,7 @@ class LocalStorage {
   #userId = '';
 
   /** Валюта продуктов */
-  #currency = 'RUB' as TCurrency;
+  #currency = 'PLN' as TCurrency;
 
   /**
    * Метод для получения валюты продуктов
@@ -144,7 +144,7 @@ class LocalStorage {
 
   async getUserData() {
     const isAuth=this.getLocalData('auth',)
-    console.log(`getUserData  auth:${isAuth}`)
+    //console.log(`getUserData  auth:${isAuth}`)
     if(isAuth){
       const userDataStorage = this.getLocalData(
         'user',
@@ -216,13 +216,13 @@ class LocalStorage {
   }
 
   async loginSubmit(event: any) {
-    console.log('loginSubmit');
-    console.log(event);
+    //console.log('loginSubmit');
+    //console.log(event);
     const usedDada = {
       email: event.target.form[0].value,
       password: event.target.form[1].value,
     };
-    console.log(usedDada);
+   // console.log(usedDada);
 
     try {
       const user = await authAPI.login(usedDada.email, usedDada.password);

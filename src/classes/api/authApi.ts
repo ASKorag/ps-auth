@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 import { IUser } from '@type/user';
-import instance from '@/api/api';
+import { backEndInstance } from '@api/API';
+
 
 export  type UserType = {
   email: string,
@@ -18,7 +19,7 @@ type AuthResponseType = {
 
 export const authAPI = {
   login(email: string, password: string) {
-    return instance.post<AuthResponseType>(`/login`, { email, password })
+    return backEndInstance.post<AuthResponseType>(`/login`, { email, password })
       .then(response => response.data)
       .catch(err => {
         if (err.response) {
@@ -34,15 +35,16 @@ export const authAPI = {
       });
   },
   registration(email: string, password: string, name: string) {
-    return instance.post<AuthResponseType>(`/registration`, { email, password, name })
+    return backEndInstance.post<AuthResponseType>(`/registration`, { email, password, name })
       .then(response => response.data);
   },
   logout() {
-    return instance.post<any>(`/logout`)
+    return backEndInstance.post<any>(`/logout`)
       .then(response => response.data);
 
   },
   refresh() {
-    return instance.get<AuthResponseType>(`/refresh`, ).then(response => response.data);
+    return backEndInstance.get<AuthResponseType>(`/refresh`, )
+      .then(response => response.data)
   },
 };

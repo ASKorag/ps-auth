@@ -9,7 +9,7 @@ import { geoLocInstance } from '@api/API';
  */
 class GeoAPI {
   /**
-   * Метод для получения координат пользователя браузером
+   * Метод для получения местоположения пользователя браузером
    */
   static getPosition() {
     navigator.geolocation.getCurrentPosition((pos) => {
@@ -19,7 +19,7 @@ class GeoAPI {
   }
 
   /**
-   * Метод для сохранения координат пользователя в локальное хранилище
+   * Метод для сохранения местоположения пользователя в локальное хранилище
    * @param longitude долгота
    * @param latitude широта
    */

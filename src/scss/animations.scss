@@ -55,9 +55,43 @@
 
 @keyframes deleteItem {
   0% {
-    transform: translateX(0vw);
+    transform: translateX(0vw) scale(1);
+    margin-bottom: 0;
   }
   100% {
-    transform: translateX(100vw);
+    transform: translateX(100vw) scale(0);
+    margin-bottom: -100%;
+  }
+}
+
+@keyframes star {
+  0% {
+    transform: scale(0);
+    animation-timing-function: cubic-bezier(.74, 1.72, .57, 1.01)
+  }
+  10% {
+    transform: scale(1);
+  }
+  65% {
+    transform: translateY(0px) scale(1);
+  }
+  75% {
+    transform: translateY(50px) scale(0);
+  }
+  100% {
+    transform: translateY(0px) scale(0);
+  }
+}
+
+@keyframes hideTree {
+  0% {
+    background: rgba(0, 0, 0, 1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.5);
   }
 }
