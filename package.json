@@ -13,6 +13,7 @@
     "dev": "npx webpack serve --mode development",
     "build": "npx webpack --mode production",
     "docs": "npx typedoc --options typedoc.json",
+    "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
