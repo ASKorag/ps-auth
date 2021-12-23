@@ -1,0 +1,10 @@
+@use '~@scss/variables/colors' as c;
+@use '~@scss/variables/sizes' as s;
+
+
+button.button-purchase-added {
+  transition: none;
+  text-align: left;
+  padding-left: 10px;
+  background: url('~@images/buttons/cart.png') no-repeat 90% 50%, c.$bgColorButton_purchase_added;
+}
