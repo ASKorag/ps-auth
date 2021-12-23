@@ -1,0 +1,341 @@
+@use '~@scss/variables/colors' as c;
+@use '~@scss/variables/sizes' as s;
+
+@font-face {
+  font-family: 'WarHelios', sans-serif;
+  src: url("~@font/HeliosCond.ttf");
+}
+
+.item-filters {
+  padding-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px 5%;
+
+  .filter-container {
+    position: relative;
+  }
+
+  @media screen and (max-device-width: s.$min-width) {
+    justify-content: space-between;
+
+    .filter-container, .item-filters-btn {
+      justify-content: center;
+      width: 100%;
+
+      ul {
+        text-align: left;
+      }
+    }
+
+  }
+  @media screen and (max-device-width: s.$max-device-width) {
+    padding-top: 15px;
+  }
+}
+
+
+.filter-container-checkedBtn {
+  width: 170px;
+  text-align: left;
+  font-family: 'WarHelios', sans-serif;
+  color: c.$fontColorFilterButton;
+  font-size: 17px;
+  line-height: 0.9;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.33);
+
+  margin: 0 20px;
+  padding: 5px 18px;
+  border-bottom: 1px dashed c.$fontColorFilterButton;
+
+  position: relative;
+
+  transition: border-bottom-color 0.3s, color 0.3s;
+
+  &:before {
+    content: url("~@images/country/nations.png");
+    width: 14px;
+    height: 14px;
+
+    position: absolute;
+    top: 50%;
+    left: -15px;
+
+    transform: translateY(-50%);
+  }
+
+  &:hover {
+    border-bottom-color: c.$fontColorFilterButtonActive;
+    color: c.$fontColorFilterButtonActive;
+  }
+
+  @media screen and (max-device-width: s.$min-width) {
+    border: none;
+  }
+}
+
+.filter-container-checkedBtn.tiers {
+  width: 110px;
+  @media screen and (max-device-width: s.$min-width) {
+    width: 170px;
+    text-align: left;
+  }
+
+}
+
+.nations-list {
+  width: 150px;
+}
+
+.type-list {
+  width: 166px;
+
+  .type-btn {
+    padding: 10px 0 10px 30px;
+
+    button {
+      &:before {
+        left: -25px;
+      }
+    }
+  }
+}
+
+.tiers-list {
+  width: 100px;
+}
+
+.filter-list { //ul
+  display: none;
+  margin-top: 15px;
+  background: #040404;
+  border: 1px solid #272727;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 5;
+
+  list-style-type: none;
+  padding: 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 8px 0 0;
+    border-color: #040404 transparent transparent transparent;
+
+
+    transform: translateX(-50%) rotate(45deg);
+    z-index: 1;
+  }
+
+}
+
+.filter-list.opened-list {
+  display: block;
+  width: 100%;
+}
+
+.filter-btn { //li
+  padding: 10px 0 10px 50px;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  z-index: 2;
+
+  &:hover {
+    background: #272727;
+
+    & button {
+      color: #cccccc;
+    }
+  }
+}
+
+.filter-btn button { //button
+  opacity: 0.8;
+  // font-family: 'War Helios Cond C';
+  font-size: 17px;
+  font-weight: 400;
+  color: #999999;
+
+  position: relative;
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: -35px;
+
+    width: 21px;
+    height: 14px;
+  }
+}
+
+
+///////////////////////////////////     страны
+.nations:before {
+  content: url("~@images/country/nations.png");
+}
+
+.china_btn:before {
+  content: url("~@images/country/filter-china.png");
+}
+
+.france_btn:before {
+  content: url("~@images/country/filter-france.png");
+}
+
+.poland_btn:before {
+  content: url("~@images/country/filter-poland.png");
+}
+
+.czech_btn:before {
+  content: url("~@images/country/filter-czech.png");
+}
+
+.germany_btn:before {
+  content: url("~@images/country/filter-germany.png");
+}
+
+.japan_btn:before {
+  content: url("~@images/country/filter-japan.png");
+}
+
+.uk_btn:before {
+  content: url("~@images/country/filter-uk.png");
+}
+
+.usa_btn:before {
+  content: url("~@images/country/filter-usa.png");
+}
+
+.ussr_btn:before {
+  content: url("~@images/country/filter-ussr.png");
+}
+
+.czech_btn:before {
+  content: url("~@images/country/filter-czech.png");
+}
+
+.germany_btn:before {
+  content: url("~@images/country/filter-germany.png");
+}
+
+///////////////////////////////////
+
+///////////////////////////////////     ранг
+.types:before {
+  content: '*';
+}
+
+.light:before {
+  content: url("~@images/buttons/diamond.png");
+}
+
+.medium:before {
+  content: url("~@images/buttons/diamond_cross.png");
+}
+
+.heavy:before {
+  content: url("~@images/buttons/diamond_2cross.png");
+}
+
+.destroy:before {
+  content: url("~@images/buttons/triangle_down.png");
+}
+
+.spg:before {
+  content: url("~@images/buttons/square.png");
+}
+
+.multirole:before {
+  content: url("~@images/buttons/triangle_top.png");
+}
+
+///////////////////////////////////
+
+//////////////////////////////////      tiers
+.tiers {
+  text-align: center;
+
+  &:before {
+    content: 'II-X';
+    width: 30px;
+    left: -30px;
+    color: c.$fontColorFilterButton;
+  }
+
+  @media screen and (max-device-width: s.$min-width) {
+    padding-left: 20px;
+
+    &:before {
+      left: -15px;
+    }
+  }
+}
+
+.tires-btn {
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.item-filters-btn {
+  display: inline-block;
+  min-width: 15%;
+  width: 170px;
+  padding: 5px;
+
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.2;;
+  letter-spacing: 0.05em;
+  color: c.$fontColorFilterButton;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.33);
+  border-bottom: 1px dashed c.$fontColorFilterButton;
+  text-align: left;
+
+  transition: color 0.3s, border-bottom-color 0.3s;
+
+  &:hover {
+    color: c.$fontColorFilterButtonActive;
+    border-bottom-color: c.$fontColorFilterButtonActive;
+
+  }
+}
+
+.opened-list.nations,
+.opened-list.tires,
+.opened-list.types {
+  font-size: 15px;
+  text-align: left;
+}
+
+.arrow {
+  &:after {
+    content: '';
+    width: 8px;
+    height: 8px;
+
+    position: absolute;
+    top: 50%;
+    right: -15px;
+
+    border-bottom: 1px solid c.$fontColorFilterButton;
+    border-right: 1px solid c.$fontColorFilterButton;
+    transform: translateY(-50%) rotate(45deg);
+  }
+}
