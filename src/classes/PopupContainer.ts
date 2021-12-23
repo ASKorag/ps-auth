@@ -25,7 +25,7 @@ class PopupContainer {
     // описание аргументов класса ниже
     switch (
       eventTarget.id // определяем id элемента, каждому айдишнику соответствуют поля для класса
-    ) {
+      ) {
       case 'login': // попап для логина
         popup = new Popup(
           eventTarget,
@@ -58,7 +58,7 @@ class PopupContainer {
         if ($wrapper) $wrapper.innerHTML = '';
         break;
       case 'logout': // попап для логаута
-        popup = new Popup(eventTarget, [[]], false, LocalStorage.logoutSubmit);
+        popup = new Popup(eventTarget, [], false, LocalStorage.logoutSubmit);
         if ($wrapper) $wrapper.innerHTML = '';
         break;
       default:

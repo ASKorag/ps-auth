@@ -13,7 +13,6 @@ import ProductAPI from '@api/ProductAPI';
 /**
  * Class for creating a router with hash support
  */
-
 class Router {
   /** array of saved routes */
   #routes: TRoute[] = [];
@@ -21,7 +20,6 @@ class Router {
   /**
    * Method for change a title to a browser tab
    */
-
   static #changeTitle(title: string): void {
     document.title = title;
   }
@@ -32,13 +30,11 @@ class Router {
    * @param title the title of the browser tab
    * @param callback callback function for route
    */
-
   addRoute(hash: string, title: string, callback: TRouteCallback): Router {
     this.#routes.push({
       hash,
       title,
       callback,
-      isCalled: false,
     });
     return this;
   }
@@ -48,7 +44,6 @@ class Router {
    * @param hash хэш пути
    * @param currency валюта продуктов
    */
-
   async createRoute(hash: string, currency: TCurrency): Promise<boolean> {
     const product = await ProductAPI.getProductsByList([hash], currency);
     if (product && product.length) {
@@ -70,25 +65,13 @@ class Router {
    * Method for finding a route in the array of saved routes of the router
    * @param hash hash route
    */
-
   findRoute(hash: string): TRoute | undefined {
     return this.#routes.find((r) => r.hash === hash);
   }
 
   /**
-   * Method whether the given route was called
-   * @param hash hash route
-   */
-
-  checkRoute(hash: string): boolean | undefined {
-    const route = this.findRoute(hash);
-    return route?.isCalled;
-  }
-
-  /**
    * Method for getting hash
    */
-
   static #getHash(): string {
     return window.location.hash.slice(1);
   }
@@ -97,23 +80,21 @@ class Router {
    * Method for initializing the router
    * @param currency валюта продуктов
    */
-
   init(currency: TCurrency) {
     window.addEventListener('hashchange', async () => {
-      const hash = Router.#getHash();
-      const route = this.findRoute(hash);
-      if (route) {
-        route.callback();
-        route.isCalled = true;
-        Router.#changeTitle(route.title);
-      } else {
-        // пробуем создать путь сами
-        const isRouteCreated = await this.createRoute(hash, currency);
-
-        if (!isRouteCreated) {
-          Router.#changeTitle('*****');
-          throw new Error(`Path #'${hash}' is undefined`);
+      try {
+        const hash = Router.#getHash();
+        const route = this.findRoute(hash);
+        if (route) {
+          route.callback();
+          Router.#changeTitle(route.title);
+        } else {
+          // пробуем создать путь сами
+          await this.createRoute(hash, currency);
         }
+      } catch (err) {
+        alert('Неправильный путь. Для перехода на главную страницу нажмите ОК');
+        window.location.hash = '';
       }
     });
   }

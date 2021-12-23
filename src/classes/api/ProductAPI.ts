@@ -66,18 +66,14 @@ class ProductAPI {
     listProductsID: string[],
     currency: TCurrency,
   ) {
-    try {
-      const response = await backEndInstance.post<IResponse<IProduct[]>>(
-        'products',
-        {
-          listProductsId: listProductsID,
-          currency,
-        },
-      );
-      return response.data.data;
-    } catch (err) {
-      throw new Error('error in API getProductsByList!!!!');
-    }
+    const response = await backEndInstance.post<IResponse<IProduct[]>>(
+      'products',
+      {
+        listProductsId: listProductsID,
+        currency,
+      },
+    );
+    return response.data.data;
   }
 }
 

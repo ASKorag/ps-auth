@@ -1,3 +1,7 @@
+/**
+ * @module Init
+ */
+
 import { TFilterRoute } from '@type/router';
 
 import Router from '@classes/Router';
@@ -6,6 +10,7 @@ import ShoppingList from '@classes/ShoppingList';
 import Filter from '@classes/Filter';
 import NavPanelDOM from '@dom/NavPanelDOM';
 
+/** эксземпляр роутера */
 const router = new Router();
 
 const arr: TFilterRoute[] = [

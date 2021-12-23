@@ -252,7 +252,7 @@
     opacity: 0.8;
   }
 
-  @media screen and (max-device-width: s.$max-device-width) {
+  @media screen and (min-device-width: s.$max-device-width) {
     display: block;
     pointer-events: auto;
     height: 30px;
