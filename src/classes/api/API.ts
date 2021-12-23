@@ -20,13 +20,13 @@ const ipLocBaseURL = 'http://ipwhois.app/json/';
 
 /** экземпляр axios для работы с сервером и БД */
 const backEndInstance = axios.create({
-  baseURL: ServerAuthBaseURL,
+  baseURL: LocalBaseURL,
   withCredentials: true,
 } as AxiosRequestConfig);
 
 /** экземпляр axios для определения местоположения пользователя по геолокации */
 const geoLocInstance = axios.create({
-  baseURL: geoLocBaseURL,
+  baseURL: ServerAuthBaseURL,
 });
 
 /** экземпляр axios для определения местоположения пользователя по IP адресу */
