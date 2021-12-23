@@ -1,9 +1,0 @@
-{
-  "name": "Premium Store",
-  "tsconfig": "./tsconfig.json",
-  "emit": "docs",
-  "entryPointStrategy": "Expand",
-  "entryPoints": "src",
-  "mergeModulesMergeMode": "module",
-  "internalNamespace": "INTERNAL"
-}
